@@ -44,6 +44,19 @@ pub struct HttpsClientStream {
 }
 
 impl HttpsClientStream {
+    pub fn new(h2: SendRequest<Bytes>, server_name: Arc<str>, query_path: Arc<str>) -> Self {
+        Self {
+            context: Arc::new(RequestContext {
+                version: Version::Http2,
+                server_name,
+                query_path,
+                set_headers: None,
+            }),
+            h2,
+            is_shutdown: false,
+        }
+    }
+
     /// Constructs a new HttpsClientStreamBuilder with the associated ClientConfig
     pub fn builder<P: RuntimeProvider>(
         client_config: Arc<ClientConfig>,
