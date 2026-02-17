@@ -50,6 +50,19 @@ impl Display for QuicClientStream {
 }
 
 impl QuicClientStream {
+    pub fn new(
+        quic_connection: Connection,
+        server_name: Arc<str>,
+        name_server: SocketAddr,
+    ) -> Self {
+        Self {
+            quic_connection,
+            server_name,
+            name_server,
+            is_shutdown: false,
+        }
+    }
+
     /// Builder for QuicClientStream
     pub fn builder() -> QuicClientStreamBuilder {
         QuicClientStreamBuilder::default()

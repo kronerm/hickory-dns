@@ -47,6 +47,27 @@ pub struct H3ClientStream {
 }
 
 impl H3ClientStream {
+    pub fn new(
+        name_server: SocketAddr,
+        server_name: Arc<str>,
+        query_path: Arc<str>,
+        send_request: SendRequest<OpenStreams, Bytes>,
+        shutdown_tx: mpsc::Sender<()>,
+    ) -> Self {
+        Self {
+            name_server,
+            send_request,
+            context: Arc::new(RequestContext {
+                version: Version::Http3,
+                server_name,
+                query_path,
+                set_headers: None,
+            }),
+            shutdown_tx,
+            is_shutdown: false,
+        }
+    }
+
     /// Builder for H3ClientStream
     pub fn builder() -> H3ClientStreamBuilder {
         H3ClientStreamBuilder {
