@@ -14,10 +14,10 @@ use quinn::{TransportConfig, VarInt};
 
 pub use self::h3_client_stream::{H3ClientStream, H3ClientStreamBuilder};
 
-const ALPN_H3: &[u8] = b"h3";
+pub const ALPN_H3: &[u8] = b"h3";
 
 /// Returns a default endpoint configuration for DNS-over-QUIC
-fn transport() -> TransportConfig {
+pub fn transport() -> TransportConfig {
     let mut transport_config = TransportConfig::default();
 
     transport_config.datagram_receive_buffer_size(None);

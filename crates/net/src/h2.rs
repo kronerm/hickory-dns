@@ -478,7 +478,7 @@ where
     }
 }
 
-const ALPN_H2: &[u8] = b"h2";
+pub const ALPN_H2: &[u8] = b"h2";
 
 #[cfg(test)]
 mod tests {
