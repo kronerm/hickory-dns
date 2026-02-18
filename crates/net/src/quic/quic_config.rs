@@ -8,7 +8,7 @@
 use quinn::{EndpointConfig, TransportConfig, VarInt};
 
 /// Returns a default endpoint configuration for DNS-over-QUIC
-pub(crate) fn endpoint() -> EndpointConfig {
+pub fn endpoint() -> EndpointConfig {
     // set some better EndpointConfig defaults for DoQ
     let mut endpoint_config = EndpointConfig::default();
 
@@ -22,7 +22,7 @@ pub(crate) fn endpoint() -> EndpointConfig {
 }
 
 /// Returns a default endpoint configuration for DNS-over-QUIC
-pub(crate) fn transport() -> TransportConfig {
+pub fn transport() -> TransportConfig {
     let mut transport_config = TransportConfig::default();
 
     transport_config.max_concurrent_uni_streams(VarInt::from_u32(0));
